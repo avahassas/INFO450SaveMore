@@ -7,7 +7,6 @@ using namespace std;
 #include <ctime>
 #include <stdio.h>
 
-
 class BankAccount
 {
 protected:
@@ -56,6 +55,7 @@ public:
 	virtual void cdbalance();
 	virtual void checks();
 };
+
 class Checking : public BankAccount
 {
 public:
@@ -93,11 +93,6 @@ public:
 	virtual void sbalance();
 	virtual void monthly();
 	virtual void checks();
-};
-
-class Time : public BankAccount
-{
-
 };
 
 void Savings::cdbalance()
@@ -341,7 +336,15 @@ int main()
 				else
 				{
 				}
-			
+
+				char s[50];
+				time_t  t = time(NULL);
+				int e;
+				e = ctime_s(s, 50, &t);
+				if (e) puts("Time");
+				else puts(s);
+				//I found this on google, it works but it doesn't stamp it in the right format. Every time I tried to do it dd/mm/yyyy, it would give me an error that it was unsafe? Not sure why, I tried to investigate but google gave me the output that I included. I included it here mainly for my reference to learn more about later. 
+				
 			return 0;
 
 		}
