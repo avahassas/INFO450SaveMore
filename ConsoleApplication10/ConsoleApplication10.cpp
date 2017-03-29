@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
+#include <ctime>
 #include <stdio.h>
 
 
@@ -93,6 +94,12 @@ public:
 	virtual void monthly();
 	virtual void checks();
 };
+
+class Time : public BankAccount
+{
+
+};
+
 void Savings::cdbalance()
 {}
 void Savings::checks()
@@ -135,11 +142,13 @@ void Savings::deposit()
 }
 void Savings::monthly()
 {
-	double interestpay = (interest / 100) * balance;
+	balance = balance + (balance * (interest / 100) / 12);
+
 }
 void Savings::display()
 {
 	cout << "Account Number:" << AccountNumber << endl;
+	cout << "Interest:" << interest << endl;
 	cout << "Balance:" << balance << endl;
 
 }
@@ -198,18 +207,20 @@ void CD::cdbalance()
 	double before;
 	if (term >= 5)
 	{
+		interest = .1;
 		before = balance * .1;
 		balance = balance + before;
 	}
 	else if (term < 5)
 	{
+		interest = .05;
 		before = balance * .05;
 		balance = balance + before;
 	}
 }
 void CD::monthly()
 {
-	double interestpay = (interest / 100) * balance;
+	balance = balance + (balance * (interest / 100) / 12);
 }
 void CD::deposit()
 {
@@ -234,6 +245,7 @@ void CD::withdraw()
 void CD::display()
 {
 	cout << "Account Number:" << AccountNumber << endl;
+	cout << "Interest:" << interest << endl;
 	cout << "Balance:" << balance << endl;
 }
 void CD::sbalance()
